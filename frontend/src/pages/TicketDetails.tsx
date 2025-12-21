@@ -89,7 +89,7 @@ export default function TicketDetails() {
       <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 p-6">
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-6 space-y-6">
 
-        {/* HEADER */}
+        
         <div>
           <h2 className="text-3xl font-bold text-gray-800">
             {ticket.title}
@@ -97,7 +97,7 @@ export default function TicketDetails() {
           <p className="text-gray-500 mt-2">{ticket.description}</p>
         </div>
 
-        {/* META INFO */}
+       
         <div className="flex flex-wrap gap-4">
           <span className="px-3 py-1 rounded-full text-sm bg-blue-100 text-blue-700">
             Priority: {ticket.priority}
@@ -115,7 +115,7 @@ export default function TicketDetails() {
           </span>
         </div>
 
-        {/* STATUS UPDATE */}
+        
         <div className="border-t pt-4">
           <h3 className="font-semibold text-gray-700 mb-2">
             Update Status
@@ -139,7 +139,7 @@ export default function TicketDetails() {
           </div>
         </div>
 
-        {/* ADMIN ASSIGN */}
+        
         <div className="border-t pt-4">
           <h3 className="font-semibold text-gray-700 mb-2">
             Assign Ticket (Admin)
@@ -161,7 +161,6 @@ export default function TicketDetails() {
           </div>
         </div>
 
-        {/* COMMENTS */}
         <div className="border-t pt-4">
           <h3 className="font-semibold text-gray-700 mb-3">
             Comments

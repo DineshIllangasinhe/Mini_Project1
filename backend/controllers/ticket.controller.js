@@ -1,7 +1,6 @@
 const { Ticket, User } = require("../models");
 const { Op } = require("sequelize");
 
-/* CREATE TICKET (User) */
 exports.createTicket = async (req, res) => {
   try {
     const { title, description, priority } = req.body;
@@ -23,24 +22,20 @@ exports.createTicket = async (req, res) => {
   }
 };
 
-/* GET TICKETS (RBAC + FILTER + SEARCH + PAGINATION) */
 exports.getTickets = async (req, res) => {
   try {
     const { status, q, page = 1, limit = 5 } = req.query;
 
     const where = {};
 
-    // RBAC: normal user sees only own tickets
     if (req.user.role === "user") {
       where.created_by = req.user.id;
     }
 
-    // Status filter
     if (status) {
       where.status = status;
     }
 
-    // Search
     if (q) {
       where[Op.or] = [
         { title: { [Op.like]: `%${q}%` } },
@@ -73,7 +68,6 @@ exports.getTickets = async (req, res) => {
   }
 };
 
-/* GET SINGLE TICKET */
 exports.getTicketById = async (req, res) => {
   try {
     const ticket = await Ticket.findByPk(req.params.id, {
@@ -87,7 +81,6 @@ exports.getTicketById = async (req, res) => {
       return res.status(404).json({ message: "Ticket not found" });
     }
 
-    // RBAC: user can only access own ticket
     if (req.user.role === "user" && ticket.created_by !== req.user.id) {
       return res.status(403).json({ message: "Access denied" });
     }
@@ -99,7 +92,6 @@ exports.getTicketById = async (req, res) => {
   }
 };
 
-/* UPDATE TICKET */
 exports.updateTicket = async (req, res) => {
   try {
     const { title, description, status } = req.body;
@@ -110,7 +102,6 @@ exports.updateTicket = async (req, res) => {
       return res.status(404).json({ message: "Ticket not found" });
     }
 
-    // RBAC: user can update only own ticket
     if (req.user.role === "user" && ticket.created_by !== req.user.id) {
       return res.status(403).json({ message: "Access denied" });
     }
@@ -124,7 +115,6 @@ exports.updateTicket = async (req, res) => {
   }
 };
 
-/* ASSIGN TICKET (Admin) */
 exports.assignTicket = async (req, res) => {
   try {
     const { assigned_to } = req.body;

@@ -1,6 +1,5 @@
 const { Comment, User, Ticket } = require("../models");
 
-/* ADD COMMENT */
 exports.addComment = async (req, res) => {
   try {
     const { comment } = req.body;
@@ -10,7 +9,7 @@ exports.addComment = async (req, res) => {
       return res.status(400).json({ message: "Comment is required" });
     }
 
-    // Ensure ticket exists
+  
     const ticket = await Ticket.findByPk(ticketId);
     if (!ticket) {
       return res.status(404).json({ message: "Ticket not found" });
@@ -32,7 +31,6 @@ exports.addComment = async (req, res) => {
   }
 };
 
-/* GET COMMENTS FOR A TICKET */
 exports.getCommentsByTicket = async (req, res) => {
   try {
     const { ticketId } = req.params;

@@ -28,7 +28,6 @@ export default function Login() {
     localStorage.setItem("token", res.accessToken);
     localStorage.setItem("role", decoded.role);
 
-    // 🔥 ROLE BASED REDIRECT
     if (decoded.role === "admin") {
       window.location.href = "/admin";
     } else {

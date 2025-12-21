@@ -11,7 +11,6 @@ export default function Navbar() {
           Tickets
         </NavLink>
 
-        {/* ADMIN LINK (ONLY FOR ADMIN) */}
         {isAdmin() && (
           <NavLink to="/admin" className={({ isActive }) => isActive ? "text-gray-200 font-semibold" : "hover:text-gray-300"}>
             Admin Dashboard

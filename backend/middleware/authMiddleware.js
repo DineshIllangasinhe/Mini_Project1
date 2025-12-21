@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 
-/* VERIFY JWT TOKEN */
 exports.verifyToken = (req, res, next) => {
   try {
     const authHeader = req.headers["authorization"];
@@ -20,7 +19,6 @@ exports.verifyToken = (req, res, next) => {
         return res.status(401).json({ message: "Unauthorized" });
       }
 
-      // Attach user info to request
       req.user = {
         id: decoded.id,
         role: decoded.role,
@@ -34,7 +32,6 @@ exports.verifyToken = (req, res, next) => {
   }
 };
 
-/* ADMIN ONLY MIDDLEWARE */
 exports.isAdmin = (req, res, next) => {
   if (!req.user || req.user.role !== "admin") {
     return res.status(403).json({ message: "Admin access required" });
