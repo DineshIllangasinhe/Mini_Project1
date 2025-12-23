@@ -27,6 +27,7 @@ export default function AdminDashboard() {
         const res = await apiFetch("/tickets");
         setTickets(res.data || res);
       } catch (err) {
+        console.error("Failed to load tickets:", err);
         alert("Failed to load tickets");
       } finally {
         setLoading(false);

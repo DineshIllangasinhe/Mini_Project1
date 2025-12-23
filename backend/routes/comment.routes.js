@@ -1,11 +1,10 @@
-const express = require("express");
+import express from "express";
+import { verifyToken } from "../middleware/authMiddleware.js";
+import commentController from "../controllers/comment.controller.js";
+
 const router = express.Router();
 
-const commentController = require("../controllers/comment.controller");
-const { verifyToken } = require("../middleware/authMiddleware");
-
 router.post("/:ticketId", verifyToken, commentController.addComment);
-
 router.get("/:ticketId", verifyToken, commentController.getCommentsByTicket);
 
-module.exports = router;
+export default router;

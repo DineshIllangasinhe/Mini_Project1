@@ -9,7 +9,6 @@ exports.addComment = async (req, res) => {
       return res.status(400).json({ message: "Comment is required" });
     }
 
-  
     const ticket = await Ticket.findByPk(ticketId);
     if (!ticket) {
       return res.status(404).json({ message: "Ticket not found" });
